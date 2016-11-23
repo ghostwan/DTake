@@ -1,0 +1,33 @@
+<resources>
+	<string name="app_name">DTake</string>
+	<string name="ok_text">You can take a pill. </string>
+	<string name="ko_text">You can\'t take a pill. </string>
+	<string name="take">Take</string>
+	<string name="take_anyway">Take anyway, but you should wait…</string>
+	<string name="title_activity_settings">Settings</string>
+
+	<string name="settings">Settings</string>
+	<string name="quit_service">Quit Service</string>
+	<string name="pill_taken">Pill taken!</string>
+	<string name="no_taken">No pill was taken!</string>
+	<string name="last_pill_taken">"Last pill was taken %s ago!"</string>
+	<plurals name="number_pill_taken">
+		<item quantity="one">Pill taken today: %d.</item>
+		<item quantity="other">Pills taken today: %d.</item>
+	</plurals>
+	<string name="title_activity_dtake">DTake Stats</string>
+
+	<string name="navigation_drawer_open">Open navigation drawer</string>
+	<string name="navigation_drawer_close">Close navigation drawer</string>
+
+	<string name="action_settings">Settings</string>
+	<string name="action_quit">Quit</string>
+	<string name="main">Main</string>
+	<string name="stats">Stats</string>
+	<string name="manage">Manage</string>
+
+	<!-- TODO: Remove or change this placeholder text -->
+	<string name="hello_blank_fragment">Hello blank fragment</string>
+	<string name="save_database">Save Database</string>
+	<string name="restore_database">Restore Database</string>
+</resources>
