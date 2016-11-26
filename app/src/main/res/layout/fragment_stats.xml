@@ -2,16 +2,13 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
              android:tag="Stats"
              android:layout_weight="1"
              tools:context="com.ghostwan.dtake.fragment.StatsFragment">
 
-	<com.jjoe64.graphview.helper.GraphViewXML
+	<com.jjoe64.graphview.GraphView
 			android:layout_width="match_parent"
 			android:layout_height="200dp"
-			android:id="@+id/graphViewXML"
-			app:seriesType="bar"
-			app:seriesColor="#ee0000" />
+			android:id="@+id/graphViewXML" />
 
 </FrameLayout>
