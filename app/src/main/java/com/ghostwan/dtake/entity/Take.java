@@ -40,4 +40,8 @@ public class Take extends SugarRecord {
     public void setOk(Boolean ok) {
         isOk = ok;
     }
+
+    public static int countTakeToday(){
+        return (int)Take.count(Take.class, "date(TAKE_DATE/1000, 'unixepoch', 'localtime') = date('now','localtime')", null);
+    }
 }

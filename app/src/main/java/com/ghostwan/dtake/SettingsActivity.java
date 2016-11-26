@@ -18,6 +18,10 @@ import android.preference.PreferenceFragment;
  * API Guide</a> for more information on developing a Settings UI.
  */
 public class SettingsActivity extends AppCompatPreferenceActivity {
+
+    public final static String COUNT_PREF = "com.ghostwan.dtake.COUNT_PREF";
+    public final static String LAST_TAKE_PREF = "com.ghostwan.dtake.LAST_TAKE_PREF";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

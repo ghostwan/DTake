@@ -4,6 +4,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical"
               android:id="@+id/layout"
+              android:tag="Manage"
               tools:context="com.ghostwan.dtake.fragment.ManageFragment">
 
 	<LinearLayout

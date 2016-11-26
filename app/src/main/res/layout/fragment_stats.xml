@@ -2,17 +2,16 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:tag="Stats"
+             android:layout_weight="1"
              tools:context="com.ghostwan.dtake.fragment.StatsFragment">
 
-	<!-- TODO: Update blank fragment layout -->
-	<TextView
+	<com.jjoe64.graphview.helper.GraphViewXML
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:text="Stats fragment in construction"/>
-
-	<EditText
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="test"/>
+			android:layout_height="200dp"
+			android:id="@+id/graphViewXML"
+			app:seriesType="bar"
+			app:seriesColor="#ee0000" />
 
 </FrameLayout>
