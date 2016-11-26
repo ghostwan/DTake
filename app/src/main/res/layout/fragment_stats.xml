@@ -6,9 +6,9 @@
              android:layout_weight="1"
              tools:context="com.ghostwan.dtake.fragment.StatsFragment">
 
-	<com.jjoe64.graphview.GraphView
+	<com.github.mikephil.charting.charts.HorizontalBarChart
+			android:id="@+id/chart"
 			android:layout_width="match_parent"
-			android:layout_height="200dp"
-			android:id="@+id/graphViewXML" />
+			android:layout_height="match_parent" />
 
 </FrameLayout>

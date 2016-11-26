@@ -6,8 +6,8 @@ android {
     buildToolsVersion "23.0.2"
     defaultConfig {
         applicationId 'com.ghostwan.dtake'
-        minSdkVersion 22
-        targetSdkVersion 23
+        minSdkVersion 24
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -31,10 +31,10 @@ dependencies {
     compile 'com.facebook.stetho:stetho:1.4.1'
     compile 'com.github.satyan:sugar:b16e65326a'
     compile 'com.android.support:design:25.0.1'
-    compile 'com.jjoe64:graphview:4.2.1'
     compile 'com.android.support:support-v4:25.0.1'
     apt "org.androidannotations:androidannotations:4.1.0"
     compile "org.androidannotations:androidannotations-api:4.1.0"
     compile 'com.nononsenseapps:filepicker:3.1.0'
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.1'
     testCompile 'junit:junit:4.12'
 }
