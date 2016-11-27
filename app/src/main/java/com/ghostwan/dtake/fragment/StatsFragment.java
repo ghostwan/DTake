@@ -1,6 +1,5 @@
 package com.ghostwan.dtake.fragment;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -11,15 +10,16 @@ import android.view.View;
 import com.ghostwan.dtake.DTakeService;
 import com.ghostwan.dtake.DayFormatter;
 import com.ghostwan.dtake.R;
+import com.ghostwan.dtake.Util;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.*;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.orm.SugarDb;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.Receiver;
-import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,18 +70,22 @@ public class StatsFragment extends Fragment {
             i++;
         }
         cursor.close();
-        BarDataSet dataSet = new BarDataSet(entryList, "Pills"); // add entries to dataset
+        BarDataSet dataSet = new BarDataSet(entryList, Util.getThingPreference(getContext(), true, true)); // add entries to dataset
         dataSet.setValueTextSize(11);
 
-        BarDataSet dataSetCurrent = new BarDataSet(entryListCurrent, "Current"); // add entries to dataset
+        BarDataSet dataSetCurrent = new BarDataSet(entryListCurrent, getString(R.string.current)); // add entries to dataset
         dataSetCurrent.setColors(ColorTemplate.VORDIPLOM_COLORS);
         dataSetCurrent.setValueTextSize(12);
 
 
         XAxis xAxis = chart.getXAxis();
         xAxis.setValueFormatter(new DayFormatter(chart, dates));
+        xAxis.setDrawGridLines(false);
         chart.setData(new BarData(dataSet, dataSetCurrent));
         chart.invalidate(); // refresh
+        chart.setVisibleXRangeMaximum(7);
+        chart.centerViewToY(i-1, YAxis.AxisDependency.LEFT);
+        chart.invalidate();
     }
 
 
