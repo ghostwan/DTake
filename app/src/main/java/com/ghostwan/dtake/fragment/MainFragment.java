@@ -29,14 +29,19 @@ public class MainFragment extends Fragment {
     @AfterViews
     void initViews(){
         int count = Take.countTakeToday();
-        String countTakenString = getResources().getQuantityString(R.plurals.number_pill_taken, count, count);
+        String countTakenString = getString(R.string.no_taken);
+        if(count != 0) {
+            sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+            long lastTakeLong = sharedPreferences.getLong(SettingsActivity.LAST_TAKE_PREF, -1);;
+            long timeDifference = (System.currentTimeMillis() - lastTakeLong);
+            String lastTakenString = Util.getDurationBreakdown(timeDifference);
+            lastTake.setText(getString(R.string.last_pill_taken, lastTakenString));
+            countTakenString = getResources().getQuantityString(R.plurals.number_pill_taken, count, count);
+        }
+
         countTake.setText(countTakenString);
 
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        long lastTakeLong = sharedPreferences.getLong(SettingsActivity.LAST_TAKE_PREF, -1);;
-        long timeDifference = (System.currentTimeMillis() - lastTakeLong);
-        String lastTakenString = Util.getDurationBreakdown(timeDifference);
-        lastTake.setText(getString(R.string.last_pill_taken, lastTakenString));
+
     }
 
 }
