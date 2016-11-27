@@ -30,4 +30,9 @@
 	<string name="hello_blank_fragment">Hello blank fragment</string>
 	<string name="save_database">Save Database</string>
 	<string name="restore_database">Restore Database</string>
+	<string name="clear_database">Clear Database</string>
+	<string name="clear_database_question">Are you sure you want to clear the database ?</string>
+	<string name="are_you_sure">Are you sure ?</string>
+	<string name="yes">YES</string>
+	<string name="no">NO</string>
 </resources>

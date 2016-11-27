@@ -1,5 +1,8 @@
 package com.ghostwan.dtake.fragment;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
@@ -7,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import com.ghostwan.dtake.R;
 import com.ghostwan.dtake.Util;
+import com.ghostwan.dtake.entity.Take;
 import com.nononsenseapps.filepicker.FilePickerActivity;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
@@ -42,6 +46,27 @@ public class ManageFragment extends Fragment {
         i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_FILE);
         i.putExtra(FilePickerActivity.EXTRA_START_PATH, Environment.getExternalStorageDirectory().getPath());
         startActivityForResult(i, RESTORE_CODE);
+    }
+
+    @Click
+    protected void clearDatabase(View view){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(R.string.clear_database);
+        builder.setMessage(R.string.are_you_sure);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+                Take.deleteAll(Take.class);
+            }
+        });
+        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.create().show();
     }
 
     @OnActivityResult(RESTORE_CODE)

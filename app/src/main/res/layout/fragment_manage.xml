@@ -9,7 +9,7 @@
 
 	<LinearLayout
 			android:layout_width="match_parent"
-			android:orientation="horizontal"
+			android:orientation="vertical"
 			android:layout_height="wrap_content">
 		<Button
 				android:id="@+id/saveDatabase"
@@ -20,6 +20,12 @@
 		<Button
 				android:id="@+id/restoreDatabase"
 				android:text="@string/restore_database"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"/>
+
+		<Button
+				android:id="@+id/clearDatabase"
+				android:text="@string/clear_database"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"/>
 	</LinearLayout>
