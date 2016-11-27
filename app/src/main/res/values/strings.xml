@@ -15,7 +15,7 @@
 		<item quantity="one">Pill taken today: %d.</item>
 		<item quantity="other">Pills taken today: %d.</item>
 	</plurals>
-	<string name="title_activity_dtake">DTake Stats</string>
+	<string name="title_activity_dtake">DTake</string>
 
 	<string name="navigation_drawer_open">Open navigation drawer</string>
 	<string name="navigation_drawer_close">Close navigation drawer</string>
