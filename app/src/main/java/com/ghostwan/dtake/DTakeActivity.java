@@ -46,8 +46,8 @@ public class DTakeActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, getString(R.string.pill_taken), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                sendBroadcast(new Intent(DTakeService.ACTION_COUNT));
+                Snackbar.make(view, getString(R.string.pill_taken), Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
 
