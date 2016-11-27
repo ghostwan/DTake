@@ -92,6 +92,9 @@ public class DTakeService extends Service {
         notif.setColor(isOkToTake ? OK_COLOR : KO_COLOR);
         notif.setOnlyAlertOnce(true);
         notif.setStyle(new Notification.MediaStyle());
+        Intent i = new Intent(getApplicationContext(), DTakeActivity_.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),0,i,PendingIntent.FLAG_UPDATE_CURRENT);
+        notif.setContentIntent(pendingIntent);
         Intent takeReceive = new Intent();
         takeReceive.setAction(ACTION_COUNT);
         PendingIntent pendingIntentYes = PendingIntent.getBroadcast(this, 12345, takeReceive, PendingIntent.FLAG_UPDATE_CURRENT);
