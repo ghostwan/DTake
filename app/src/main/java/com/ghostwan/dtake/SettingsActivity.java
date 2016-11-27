@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -19,8 +20,14 @@ import android.preference.PreferenceFragment;
  */
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
-    public final static String COUNT_PREF = "com.ghostwan.dtake.COUNT_PREF";
     public final static String LAST_TAKE_PREF = "com.ghostwan.dtake.LAST_TAKE_PREF";
+    public final static String THING_TAKEN = "thing_taken";
+    public final static String UPDATE_TIME = "update_time";
+    public final static String TIME_LIMIT = "time_limit";
+
+    public static final String DEFAULT_VALUE_THING_TAKE = "pill";
+    public static final String DEFAULT_VALUE_UPDATE_TIME = "1";
+    public static final String DEFAULT_VALUE_TIME_LIMIT = "60";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,26 +37,30 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     public static class MyPreferenceFragment extends PreferenceFragment
     {
-        private Preference updateTimePreference;
-        private Preference timeLimitPreference;
-
         @Override
         public void onCreate(final Bundle savedInstanceState)
         {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
-            updateTimePreference = getPreferenceScreen().findPreference("update_time");
-            updateTimePreference.setOnPreferenceChangeListener(numberCheckListener);
-
-            timeLimitPreference = getPreferenceScreen().findPreference("time_limit");
-            timeLimitPreference.setOnPreferenceChangeListener(numberCheckListener);
+            initPreference(UPDATE_TIME, minuteCheckListener);
+            initPreference(TIME_LIMIT, minuteCheckListener);
+            initPreference(THING_TAKEN, normalCheckListener);
         }
 
-        private Preference.OnPreferenceChangeListener numberCheckListener = new Preference.OnPreferenceChangeListener() {
+        private void initPreference(String preferenceName, Preference.OnPreferenceChangeListener listener) {
+            Preference preference = getPreferenceScreen().findPreference(preferenceName);
+            preference.setOnPreferenceChangeListener(listener);
+            String value = PreferenceManager.getDefaultSharedPreferences(preference.getContext()).getString(preferenceName, "");
+            listener.onPreferenceChange(preference, value);
+        }
+
+
+        private Preference.OnPreferenceChangeListener minuteCheckListener = new Preference.OnPreferenceChangeListener() {
 
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 //Check that the string is an integer.
+
                 String stringValue = newValue.toString();
                 boolean value = numberCheck(stringValue);
                 if (value) {
@@ -58,7 +69,20 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     else
                         preference.setSummary(stringValue+" minutes");
                 }
+                else {
+                    preference.setSummary(stringValue);
+                }
                 return value;
+            }
+        };
+
+        private Preference.OnPreferenceChangeListener normalCheckListener = new Preference.OnPreferenceChangeListener() {
+
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                String stringValue = newValue.toString();
+                preference.setSummary(stringValue);
+                return true;
             }
         };
 

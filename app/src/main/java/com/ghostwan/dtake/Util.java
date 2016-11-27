@@ -1,6 +1,9 @@
 package com.ghostwan.dtake;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
@@ -27,6 +30,7 @@ import java.util.concurrent.TimeUnit;
 public class Util {
 
     private static final String TAG = "Util";
+
     private static Util util = null;
 
     @UiThread
@@ -128,4 +132,49 @@ public class Util {
 
         return(sb.toString());
     }
+
+    public static String getThingPreference(Context context, boolean isUppercase, boolean isPlural) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String thing = sharedPreferences.getString(SettingsActivity.THING_TAKEN, SettingsActivity.DEFAULT_VALUE_THING_TAKE);
+        if (isUppercase){
+            thing = thing.substring(0, 1).toUpperCase() + thing.substring(1);
+        }
+        if (isPlural) {
+            thing = thing + "s";
+        }
+        return thing;
+    }
+
+    public static String getThing(Context context, int stringID,  Object formatArg ) {
+        return context.getString(stringID, getThingPreference(context,false, false), formatArg);
+    }
+
+    public static String getThing(Context context,int stringID) {
+        return context.getString(stringID, getThingPreference(context,false, false));
+    }
+
+    public static String getThings(Context context, int stringID, Object formatArg) {
+        return context.getString(stringID, getThingPreference(context,false, true), formatArg);
+    }
+
+    public static String getThings(Context context, int stringID ) {
+        return context.getString(stringID, getThingPreference(context,false, true));
+    }
+
+    public static String getUpperThing(Context context, int stringID,  Object formatArg ) {
+        return context.getString(stringID, getThingPreference(context,true,false), formatArg);
+    }
+
+    public static String getUpperThing(Context context,int stringID) {
+        return context.getString(stringID, getThingPreference(context,true, false));
+    }
+
+    public static String getUpperThings(Context context, int stringID, Object formatArg) {
+        return context.getString(stringID, getThingPreference(context,true, true), formatArg);
+    }
+
+    public static String getUpperThings(Context context, int stringID ) {
+        return context.getString(stringID, getThingPreference(context,true, true));
+    }
+
 }

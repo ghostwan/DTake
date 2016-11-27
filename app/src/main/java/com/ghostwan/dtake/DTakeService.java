@@ -11,8 +11,6 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import com.ghostwan.dtake.entity.Take;
 
-import java.util.concurrent.TimeUnit;
-
 public class DTakeService extends Service {
 
     private static final String TAG = "DTakeService";
@@ -37,7 +35,8 @@ public class DTakeService extends Service {
         @Override
         public void run() {
             updateNotification();
-            long updateTime = Integer.parseInt(sharedPreferences.getString("update_time", "1")) * MINUTE;
+            String prefUpdateTime = sharedPreferences.getString(SettingsActivity.UPDATE_TIME, SettingsActivity.DEFAULT_VALUE_UPDATE_TIME);
+            long updateTime = Integer.parseInt(prefUpdateTime) * MINUTE;
             handler.postDelayed(updateRunnable, updateTime);
         }
     };
@@ -70,7 +69,8 @@ public class DTakeService extends Service {
 
     private void updateNotification () {
 
-        long timeLimit = Integer.parseInt(sharedPreferences.getString("time_limit", "60")) * MINUTE;
+        String prefTimeLimit = sharedPreferences.getString(SettingsActivity.TIME_LIMIT, SettingsActivity.DEFAULT_VALUE_TIME_LIMIT);
+        long timeLimit = Integer.parseInt(prefTimeLimit) * MINUTE;
 
         long currentTime = System.currentTimeMillis();
         long timeDifference = (currentTime - lastTake);
@@ -79,15 +79,15 @@ public class DTakeService extends Service {
 
         String lastTakenString = Util.getDurationBreakdown(timeDifference);
         int count = Take.countTakeToday();
-        String countTakenString = getResources().getQuantityString(R.plurals.number_pill_taken, count, count);
+        String countTakenString = getResources().getQuantityString(R.plurals.number_pill_taken,count, count,  Util.getThingPreference(this, true, true));
 
         Notification.Builder notif = new Notification.Builder(getApplicationContext());
         notif.setSmallIcon(isOkToTake ? OK_RESOURCE : KO_RESOURCE);
-        notif.setContentTitle(getString(isOkToTake ? R.string.ok_text : R.string. ko_text) +" "+ countTakenString);
+        notif.setContentTitle(Util.getThing(this, isOkToTake? R.string.ok_text : R.string.ko_text, countTakenString ));
         if(lastTake != -1)
-            notif.setContentText(getString(R.string.last_pill_taken, lastTakenString));
+            notif.setContentText(Util.getThing(this, R.string.last_pill_taken, lastTakenString));
         else
-            notif.setContentText(getString(R.string.no_taken));
+            notif.setContentText(Util.getThing(this, R.string.no_taken));
         notif.setOngoing(true);
         notif.setColor(isOkToTake ? OK_COLOR : KO_COLOR);
         notif.setOnlyAlertOnce(true);
@@ -105,7 +105,7 @@ public class DTakeService extends Service {
     private void notifyCount() {
         Notification.Builder notif = new Notification.Builder(getApplicationContext());
         notif.setSmallIcon(R.drawable.ic_add_vector);
-        notif.setContentTitle(getString(R.string.pill_taken));
+        notif.setContentTitle(Util.getUpperThing(this, R.string.pill_taken));
         notif.setOngoing(true);
         notif.setColor(NOTIFY_COLOR);
         notif.setOnlyAlertOnce(true);

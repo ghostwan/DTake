@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<EditTextPreference android:title="Update time for notification"
+
+	<EditTextPreference android:title="@string/title_update_time"
 	                    android:key="update_time"
 	                    android:inputType="number"
-	                    android:summary="Please provide in minutes">
+	                    android:summary="@string/summary_update_time">
 	</EditTextPreference>
 
-	<EditTextPreference android:title="Time between take"
+	<EditTextPreference android:title="@string/title_time_limit"
 	                    android:key="time_limit"
 	                    android:inputType="number"
-	                    android:summary="Please provide in minutes">
+	                    android:summary="@string/summary_time_limit">
+	</EditTextPreference>
+
+	<EditTextPreference android:title="@string/title_thing_taken"
+	                    android:key="thing_taken"
+	                    android:inputType="text"
+	                    android:summary="@string/summary_thing_taken">
 	</EditTextPreference>
 </PreferenceScreen>

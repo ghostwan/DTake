@@ -1,19 +1,19 @@
 <resources>
 	<string name="app_name">DTake</string>
-	<string name="ok_text">You can take a pill. </string>
-	<string name="ko_text">You can\'t take a pill. </string>
+	<string name="ok_text">You can take a %1$s. %2$s</string>
+	<string name="ko_text">You can\'t take a %1$s. %2$s</string>
 	<string name="take">Take</string>
 	<string name="take_anyway">Take anyway, but you should wait…</string>
 	<string name="title_activity_settings">Settings</string>
 
 	<string name="settings">Settings</string>
 	<string name="quit_service">Quit Service</string>
-	<string name="pill_taken">Pill taken!</string>
-	<string name="no_taken">No pill was taken!</string>
-	<string name="last_pill_taken">"Last pill was taken %s ago!"</string>
+	<string name="pill_taken">%s taken!</string>
+	<string name="no_taken">No %s was taken!</string>
+	<string name="last_pill_taken">"Last %1$s was taken %2$s ago!"</string>
 	<plurals name="number_pill_taken">
-		<item quantity="one">Pill taken today: %d.</item>
-		<item quantity="other">Pills taken today: %d.</item>
+		<item quantity="one">%2$s taken today: %1$d.</item>
+		<item quantity="other">%2$s taken today: %1$d.</item>
 	</plurals>
 	<string name="title_activity_dtake">DTake</string>
 
@@ -35,4 +35,11 @@
 	<string name="are_you_sure">Are you sure ?</string>
 	<string name="yes">YES</string>
 	<string name="no">NO</string>
+	<string name="summary_thing_taken">Default is \"pill\", could be \"cigarette\" or \"chocolate\"</string>
+	<string name="summary_time_limit">Please provide in minutes</string>
+	<string name="summary_update_time">Please provide in minutes</string>
+	<string name="title_update_time">Update time for notification</string>
+	<string name="title_time_limit">Time between take</string>
+	<string name="title_thing_taken">Thing taken</string>
+	<string name="current">Current</string>
 </resources>
