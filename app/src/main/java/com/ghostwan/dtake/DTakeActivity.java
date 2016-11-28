@@ -14,13 +14,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import com.ghostwan.dtake.fragment.MainFragment_;
-import com.ghostwan.dtake.fragment.ManageFragment_;
-import com.ghostwan.dtake.fragment.StatsFragment_;
+import com.ghostwan.dtake.fragment.*;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
+
+import java.util.Date;
 
 @EActivity
 @OptionsMenu(R.menu.main2)
@@ -63,7 +63,7 @@ public class DTakeActivity extends AppCompatActivity
         navigationView.setCheckedItem(R.id.nav_main);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment fragment = new MainFragment_();
+        Fragment fragment = DayFragment_.builder().date(new Date()).build();
         fragmentManager.beginTransaction().addToBackStack(fragment.getTag()).replace(R.id.content_main2, fragment).commit();
     }
 
@@ -94,18 +94,11 @@ public class DTakeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         Fragment fragment = null;
-        Class fragmentClass = null;
 
         switch (id){
-            case R.id.nav_main: fragmentClass = MainFragment_.class; break;
-            case R.id.nav_stats: fragmentClass = StatsFragment_.class; break;
-            case R.id.nav_manage: fragmentClass = ManageFragment_.class; break;
-        }
-
-        try {
-            fragment = (Fragment) fragmentClass.newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
+            case R.id.nav_main: fragment = DayFragment_.builder().date(new Date()).build(); break;
+            case R.id.nav_stats: fragment = StatsFragment_.builder().build(); break;
+            case R.id.nav_manage: fragment = ManageFragment_.builder().build(); break;
         }
 
         // Insert the fragment by replacing any existing fragment

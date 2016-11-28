@@ -11,6 +11,7 @@ import java.util.Calendar;
 
 public class Event implements IEvent {
 
+    private static final int TIME_FOR_A_TAKE = 30;
     private Calendar mStartTime;
     private boolean isOk;
 
@@ -30,7 +31,7 @@ public class Event implements IEvent {
 
     public Calendar getEndTime() {
         Calendar endTime = (Calendar) mStartTime.clone();
-        endTime.add(Calendar.MINUTE, 15);
+        endTime.add(Calendar.MINUTE, TIME_FOR_A_TAKE);
         return endTime;
     }
 
