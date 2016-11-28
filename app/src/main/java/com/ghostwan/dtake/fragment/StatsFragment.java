@@ -21,7 +21,6 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.orm.SugarDb;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -54,7 +53,8 @@ public class StatsFragment extends Fragment {
     protected void updateChart(){
         SQLiteDatabase database = SugarDb.getInstance().getDB();
 
-        List<BarEntry> entryList = new ArrayList<>();
+        List<BarEntry> okEntryList = new ArrayList<>();
+        List<BarEntry> koEntryList = new ArrayList<>();
         List<BarEntry> entryListCurrent = new ArrayList<>();
 
         Cursor cursor = database.rawQuery("select count(*), take_date " +
@@ -65,31 +65,44 @@ public class StatsFragment extends Fragment {
         Log.d(TAG, "Data count: " + cursor.getCount());
         int i = 0;
         Long[] dates = new Long[cursor.getCount()];
+
         while (cursor.moveToNext()) {
             int count = cursor.getInt(0);
             long datetime = cursor.getLong(1);
-            if(i+1 != cursor.getCount()) {
-                entryList.add(new BarEntry(i, count, datetime));
+
+            if (Util.isDateSameDay(new Date(datetime), new Date())){
+                entryListCurrent.add(new BarEntry(i, count, datetime));
             }
             else {
-                entryListCurrent.add(new BarEntry(i, count, datetime));
+                Cursor cursor2 = database.rawQuery("select * " +
+                        " from take " +
+                        " where " + Take.getWhereTakeDate(null) + " = "+Take.getWhereTakeDate(datetime)+ " and is_ok = 0"
+                        , null);
+                if(cursor2.getCount() > 0)
+                    koEntryList.add(new BarEntry(i, count, datetime));
+                else
+                    okEntryList.add(new BarEntry(i, count, datetime));
             }
             dates[i] = datetime;
             i++;
         }
         cursor.close();
-        BarDataSet dataSet = new BarDataSet(entryList, Util.getThingPreference(getContext(), true, true)); // add entries to dataset
-        dataSet.setValueTextSize(11);
+        BarDataSet okDataSet = new BarDataSet(okEntryList, getString(R.string.good_take)); // add entries to dataset
+        okDataSet.setValueTextSize(11);
+        okDataSet.setColor(getResources().getColor(R.color.okColor));
+
+        BarDataSet koDataSet = new BarDataSet(koEntryList, getString(R.string.bad_take)); // add entries to dataset
+        koDataSet.setValueTextSize(11);
+        koDataSet.setColor(getResources().getColor(R.color.koColor));
 
         BarDataSet dataSetCurrent = new BarDataSet(entryListCurrent, getString(R.string.current)); // add entries to dataset
-        dataSetCurrent.setColors(ColorTemplate.VORDIPLOM_COLORS);
         dataSetCurrent.setValueTextSize(12);
 
 
         XAxis xAxis = chart.getXAxis();
         xAxis.setValueFormatter(new DayFormatter(chart, dates));
         xAxis.setDrawGridLines(false);
-        chart.setData(new BarData(dataSet, dataSetCurrent));
+        chart.setData(new BarData(okDataSet,koDataSet, dataSetCurrent));
         chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {

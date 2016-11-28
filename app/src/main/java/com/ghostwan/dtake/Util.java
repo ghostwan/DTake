@@ -133,6 +133,11 @@ public class Util {
         return(sb.toString());
     }
 
+    public static boolean isDateSameDay(Date date1, Date date2){
+        android.icu.text.SimpleDateFormat fmt = new android.icu.text.SimpleDateFormat("yyyyMMdd");
+        return fmt.format(date1).equals(fmt.format(date2));
+    }
+
     public static String getThingPreference(Context context, boolean isUppercase, boolean isPlural) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String thing = sharedPreferences.getString(SettingsActivity.THING_TAKEN, SettingsActivity.DEFAULT_VALUE_THING_TAKE);

@@ -41,6 +41,8 @@
 	<string name="title_update_time">Update time for notification</string>
 	<string name="title_time_limit">Time between take</string>
 	<string name="title_thing_taken">Thing taken</string>
-	<string name="current">Current</string>
+	<string name="current">Current take</string>
 	<string name="day_stats">Day stats : %s</string>
+	<string name="bad_take">Bad take</string>
+	<string name="good_take">Good take</string>
 </resources>
