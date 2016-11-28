@@ -12,3 +12,4 @@ It use :
 - Sugar ORM : https://github.com/satyan/sugar
 - NoNonsense-FilePicker : https://github.com/spacecowboy/NoNonsense-FilePicker
 - Sthetho : https://github.com/facebook/stetho
+- Fork of Calendar-Day-View : https://github.com/khacpv/Calendar-Day-View

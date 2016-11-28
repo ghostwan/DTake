@@ -1,7 +1,6 @@
 package com.ghostwan.dtake.fragment;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,9 +11,11 @@ import com.ghostwan.dtake.R;
 import com.ghostwan.dtake.Util;
 import com.ghostwan.dtake.entity.Take;
 import com.nononsenseapps.filepicker.FilePickerActivity;
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OnActivityResult;
+
 import static com.orm.util.ContextUtil.getPackageName;
 
 @EFragment(R.layout.fragment_manage)
@@ -25,6 +26,11 @@ public class ManageFragment extends Fragment {
     private static final int SAVE_CODE = 2;
     private String currentDBPath = "/data/data/" + getPackageName() + "/databases/dtake.db";
 
+
+    @AfterViews
+    protected void initViews(){
+        getActivity().setTitle(R.string.manage);
+    }
 
     @Click
     protected void saveDatabase(View view) {

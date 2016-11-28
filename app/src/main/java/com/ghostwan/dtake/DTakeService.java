@@ -16,9 +16,9 @@ public class DTakeService extends Service {
     private static final String TAG = "DTakeService";
     public static final String ACTION_COUNT = "com.ghostwan.dtake.COUNT";
 
-    private static final int OK_COLOR = 0x05c41f;
+    public static final int OK_COLOR = 0x05c41f;
     private static final int OK_RESOURCE = R.drawable.ic_good_vector;
-    private static final int KO_COLOR = 0xf40408;
+    public static final int KO_COLOR = 0xf40408;
     private static final int NOTIFY_COLOR = 0x4286f4;
     private static final int KO_RESOURCE = R.drawable.ic_bad_vector;
     private static final int ID = 1234;

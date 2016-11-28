@@ -3,7 +3,6 @@ package com.ghostwan.dtake.fragment;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-
 import android.widget.TextView;
 import com.ghostwan.dtake.R;
 import com.ghostwan.dtake.SettingsActivity;
@@ -11,7 +10,6 @@ import com.ghostwan.dtake.Util;
 import com.ghostwan.dtake.entity.Take;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.PreferenceByKey;
 import org.androidannotations.annotations.ViewById;
 
 
@@ -24,12 +22,11 @@ public class MainFragment extends Fragment {
     @ViewById
     TextView lastTake;
 
-    private SharedPreferences sharedPreferences;
-
     @AfterViews
     void initViews(){
+        getActivity().setTitle(R.string.main);
         int count = Take.countTakeToday();
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         long lastTakeThing = sharedPreferences.getLong(SettingsActivity.LAST_TAKE_PREF, -1);
 
         if(lastTakeThing != -1) {

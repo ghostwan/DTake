@@ -12,9 +12,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.MenuItem;
-import com.ghostwan.dtake.fragment.*;
+import android.view.View;
+import com.ghostwan.dtake.fragment.MainFragment_;
+import com.ghostwan.dtake.fragment.ManageFragment_;
+import com.ghostwan.dtake.fragment.StatsFragment_;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
@@ -95,9 +97,9 @@ public class DTakeActivity extends AppCompatActivity
         Class fragmentClass = null;
 
         switch (id){
-            case R.id.nav_main: fragmentClass = MainFragment_.class; setTitle(R.string.main); break;
-            case R.id.nav_stats: fragmentClass = StatsFragment_.class; setTitle(R.string.stats); break;
-            case R.id.nav_manage: fragmentClass = ManageFragment_.class; setTitle(R.string.manage); break;
+            case R.id.nav_main: fragmentClass = MainFragment_.class; break;
+            case R.id.nav_stats: fragmentClass = StatsFragment_.class; break;
+            case R.id.nav_manage: fragmentClass = ManageFragment_.class; break;
         }
 
         try {

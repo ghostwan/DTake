@@ -3,4 +3,8 @@
 	<color name="colorPrimary">#3F51B5</color>
 	<color name="colorPrimaryDark">#303F9F</color>
 	<color name="colorAccent">#FF4081</color>
+	<color name="okColor">#05c41f</color>
+	<color name="koColor">#f40408</color>
+	<color name="eventColor">#553fa9eb</color>
+	<color name="eventColorSelected">#aab2c99a</color>
 </resources>

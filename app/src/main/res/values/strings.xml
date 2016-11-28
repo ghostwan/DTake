@@ -42,4 +42,5 @@
 	<string name="title_time_limit">Time between take</string>
 	<string name="title_thing_taken">Thing taken</string>
 	<string name="current">Current</string>
+	<string name="day_stats">Day stats : %s</string>
 </resources>
